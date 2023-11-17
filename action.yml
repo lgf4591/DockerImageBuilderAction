@@ -12,7 +12,11 @@ inputs:
     description: "Name of the image to push"
     required: true
   tag: 
-    description: "How to tag the image. Default: latest"    
+    description: "How to tag the image. Default: latest"
+    default: 'latest'
+  context: 
+    description: "Context of the image to build. Default: ."
+    default: '.'
 
 runs:
   using: "composite"
@@ -39,6 +43,6 @@ runs:
       - name: Build and Push the Image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ${{inputs.context}}
           push: true
           tags: ${{inputs.registry_username}}/${{inputs.image_name}}:${{env.final_tag}}
