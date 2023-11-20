@@ -12,8 +12,8 @@ inputs:
     description: "Name of the image to push"
     required: true
   registry:
-    description: "Define registry for this image. Default: "" -docker.io "
-    default: 'docker.io'
+    description: "Define registry for this image. Default: '' -docker.io "
+    default: ''
   tag: 
     description: "How to tag the image. Default: latest"
     default: 'latest'
