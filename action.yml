@@ -47,7 +47,7 @@ runs:
             echo "registry_prefix=''" >> $GITHUB_ENV
           else
             echo "registry_username=${{github.repository_owner}}" >> $GITHUB_ENV
-            echo "registry_password=${{secrets.GHCR_TOKEN}}" >> $GITHUB_ENV
+            echo "registry_password=${{inputs.registry_password}}" >> $GITHUB_ENV
             echo "registry_prefix=${{inputs.registry}}/" >> $GITHUB_ENV
           fi
       
