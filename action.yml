@@ -42,12 +42,8 @@ runs:
         run: |
           if [ -z "${{inputs.registry}}" ]
           then
-            echo "registry_username=${{inputs.registry_username}}" >> $GITHUB_ENV
-            echo "registry_password=${{inputs.registry_password}}" >> $GITHUB_ENV
             echo "registry_prefix=''" >> $GITHUB_ENV
           else
-            echo "registry_username=${{github.repository_owner}}" >> $GITHUB_ENV
-            echo "registry_password=${{inputs.registry_password}}" >> $GITHUB_ENV
             echo "registry_prefix=${{inputs.registry}}/" >> $GITHUB_ENV
           fi
       
@@ -55,12 +51,12 @@ runs:
         uses: docker/login-action@v3
         with:
           registry: ${{inputs.registry}}
-          username: ${{env.registry_username}}
-          password: ${{env.registry_password}}
+          username: ${{inputs.registry_username}}
+          password: ${{inputs.registry_password}}
 
       - name: Build and Push the Image
         uses: docker/build-push-action@v5
         with:
           context: ${{inputs.build_context}}
           push: true
-          tags: ${{env.registry_prefix}}${{env.registry_username}}/${{inputs.image_name}}:${{env.final_tag}}
+          tags: ${{env.registry_prefix}}${{inputs.registry_username}}/${{inputs.image_name}}:${{env.final_tag}}
