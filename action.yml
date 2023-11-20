@@ -13,7 +13,7 @@ inputs:
     required: true
   registry:
     description: "Define registry for this image. Default: "" -docker.io "
-    default: ''
+    default: 'docker.io'
   tag: 
     description: "How to tag the image. Default: latest"
     default: 'latest'
